@@ -1,4 +1,4 @@
-package blog.model;
+package blog.mongo.model;
 
 import org.springframework.data.annotation.Id;
 

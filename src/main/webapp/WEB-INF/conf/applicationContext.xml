@@ -10,21 +10,12 @@
         http://www.springframework.org/schema/data/mongo
         http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd">
 	
-	<bean id="mongoURIOpenshift" class="com.mongodb.MongoURI">
-		<constructor-arg value="mongodb://admin:1g75UgGjfzFP@$OPENSHIFT_MONGODB_DB_HOST:$OPENSHIFT_MONGODB_DB_PORT/blog"/>
-	</bean>
-	
-	<bean id="mongoURILocalhost" class="com.mongodb.MongoURI">
-		<constructor-arg value="mongodb://localhost/test"/>
-	</bean>
-	
-	<bean id="mongo" class="com.mongodb.Mongo">
-		<constructor-arg ref="mongoURILocalhost"/>
-	</bean>
-	
-	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-		<constructor-arg ref="mongo"/>
-		<constructor-arg name="databaseName" value="test"/>
-	</bean>
+	<bean id="mongoOperationsInitiator" class="blog.mongo.initiator.MongoOperationsInitiator">
+		<constructor-arg name="host" value="localhost"/>
+		<constructor-arg name="port" value="27017"/>
+		<constructor-arg name="username"><value/></constructor-arg>
+		<constructor-arg name="password"><value/></constructor-arg>
+		<constructor-arg name="appName" value="blog"/>
+	</bean>	
 
 </beans>
