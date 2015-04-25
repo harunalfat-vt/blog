@@ -1,11 +1,30 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans     
         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.springframework.org/schema/context 
-        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/data/mongo
+        http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd">
+	
+	<bean id="mongoURIOpenshift" class="com.mongodb.MongoURI">
+		<constructor-arg value="mongodb://admin:1g75UgGjfzFP@$OPENSHIFT_MONGODB_DB_HOST:$OPENSHIFT_MONGODB_DB_PORT/blog"/>
+	</bean>
+	
+	<bean id="mongoURILocalhost" class="com.mongodb.MongoURI">
+		<constructor-arg value="mongodb://localhost/test"/>
+	</bean>
+	
+	<bean id="mongo" class="com.mongodb.Mongo">
+		<constructor-arg ref="mongoURILocalhost"/>
+	</bean>
+	
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg ref="mongo"/>
+		<constructor-arg name="databaseName" value="test"/>
+	</bean>
 
- 
 </beans>
