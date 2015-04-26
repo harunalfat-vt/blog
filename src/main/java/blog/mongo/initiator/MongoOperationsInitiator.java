@@ -18,10 +18,10 @@ public final class MongoOperationsInitiator{
 	
 	public MongoOperationsInitiator(String host, String port, String username, String password, String appName){
 		MongoOperationsInitiator.host = System.getenv("OPENSHIFT_MONGODB_DB_HOST") != null ? System.getenv("OPENSHIFT_MONGODB_DB_HOST") : host;
-		MongoOperationsInitiator.port = System.getenv("OPENSHIFT_MONGODB_DB_PORT") != null ? System.getenv("OPENSHIFT_MONGODB_DB_HOST") : port;
-		MongoOperationsInitiator.username = System.getenv("OPENSHIFT_MONGODB_DB_USERNAME") != null ? System.getenv("OPENSHIFT_MONGODB_DB_HOST") : username;
-		MongoOperationsInitiator.password = System.getenv("OPENSHIFT_MONGODB_DB_PASSWORD") != null ? System.getenv("OPENSHIFT_MONGODB_DB_HOST") : password;
-		MongoOperationsInitiator.appName = System.getenv("OPENSHIFT_APP_NAME") != null ? System.getenv("OPENSHIFT_MONGODB_DB_HOST") : appName;
+		MongoOperationsInitiator.port = System.getenv("OPENSHIFT_MONGODB_DB_PORT") != null ? System.getenv("OPENSHIFT_MONGODB_DB_PORT") : port;
+		MongoOperationsInitiator.username = System.getenv("OPENSHIFT_MONGODB_DB_USERNAME") != null ? System.getenv("OPENSHIFT_MONGODB_DB_USERNAME") : username;
+		MongoOperationsInitiator.password = System.getenv("OPENSHIFT_MONGODB_DB_PASSWORD") != null ? System.getenv("OPENSHIFT_MONGODB_DB_PASSWORD") : password;
+		MongoOperationsInitiator.appName = System.getenv("OPENSHIFT_APP_NAME") != null ? System.getenv("OPENSHIFT_APP_NAME") : appName;
 	}
 
 	public static MongoTemplate initMongoOperations() {

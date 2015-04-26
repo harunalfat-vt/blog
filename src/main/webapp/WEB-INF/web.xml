@@ -17,12 +17,16 @@
 	</servlet>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/conf/applicationContext.xml</param-value>
+		<param-value>
+		classpath:/context/application-context.xml
+		classpath:/context/service-context.xml
+		</param-value>
 	</context-param>
 	<servlet-mapping>
 		<servlet-name>spring</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
 	
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
