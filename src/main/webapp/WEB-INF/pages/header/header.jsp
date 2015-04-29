@@ -9,8 +9,7 @@
     <title>Kode Hidup</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="<%=request.getContextPath()%>/resources/css/clean-blog.min.css" rel="stylesheet">
 
@@ -45,10 +44,9 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/">Home</a></li>
-				<li><a href="about">About</a></li>
-				<li><a href="post">Post</a></li>
-				<li><a href="contact">Contact</a></li>
+				<li><a href="<%=request.getContextPath()%>/">Home</a></li>
+				<li><a href="<%=request.getContextPath()%>/about">About</a></li>
+<%-- 				<li><a href="<%=request.getContextPath()%>/contact">Contact</a></li> --%>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->

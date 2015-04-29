@@ -1,13 +1,17 @@
 package blog.data.model;
 
+import java.util.Date;
+
 public class Post {
 
 	private String id;
 	private String title;
 	private String subTitle;
 	private String content;
-	private String date;
+	private Date dtcreated;
+	private Date dtupdated;
 	private String user;
+	private String dateStr;
 	
 	public String getId() {
 		return id;
@@ -33,17 +37,29 @@ public class Post {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getDate() {
-		return date;
-	}
-	public void setDate(String date) {
-		this.date = date;
-	}
 	public String getUser() {
 		return user;
 	}
 	public void setUser(String user) {
 		this.user = user;
+	}
+	public String getDateStr() {
+		return dateStr;
+	}
+	public void setDateStr(String dateStr) {
+		this.dateStr = dateStr;
+	}
+	public Date getDtcreated() {
+		return dtcreated;
+	}
+	public void setDtcreated(Date dtcreated) {
+		this.dtcreated = dtcreated;
+	}
+	public Date getDtupdated() {
+		return dtupdated;
+	}
+	public void setDtupdated(Date dtupdated) {
+		this.dtupdated = dtupdated;
 	}
 	
 }
