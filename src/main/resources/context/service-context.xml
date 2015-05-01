@@ -10,6 +10,8 @@
         http://www.springframework.org/schema/data/mongo
         http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd">
 
-	<context:component-scan base-package="blog.service.impl"/>
+	<bean id="dashboardService" class="blog.service.impl.DashboardServiceImpl"/>
+	
+	<bean id="credentialService" class="blog.service.impl.CredentialServiceImpl"/>
 
 </beans>

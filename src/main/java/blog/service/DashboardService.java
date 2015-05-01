@@ -10,6 +10,8 @@ public interface DashboardService {
 	
 	public void insertPost(Post post);
 	
+	public void updatePost(Post post);
+	
 	public Post getAboutContent();
 	
 	public void updateAbout(Post post);

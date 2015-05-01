@@ -1,28 +1,44 @@
 package blog.service.impl;
 
-import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.query.BasicQuery;
-import org.springframework.stereotype.Service;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+
+import blog.data.enumeration.EnumCollectionType;
 import blog.data.model.User;
 import blog.mongo.initiator.MongoOperationsInitiator;
 import blog.service.CredentialService;
 
-@Service
 public class CredentialServiceImpl implements CredentialService{
 
 	private MongoOperations mongoOperations = MongoOperationsInitiator.initMongoOperations();
 	
 	@Override
 	public Boolean validateLogin(String username, String password) {
-		/*BasicQuery query = new BasicQuery("{username : '"+username+"', password : '"+password+"'}");
-		User user = mongoOperations.findOne(query, User.class);*/
-		User user = null;
-		if (username.equals("harunalfat") && password.equals("Jakarta1")){
-			user = new User();
-			user.setUsername("harunalfat");
-		}
+		Query query = new Query();
+		User user = new User();
+		try {
+			query = new Query(Criteria.where("username").is(username).and("password").is(getHashedPassword(password)));
+			user = mongoOperations.findOne(query, User.class, EnumCollectionType.user.toString());
+		} catch (NoSuchAlgorithmException e) {
+			user = null;
+			e.printStackTrace();
+		}		
 		return (user != null);
+	}
+
+	private String getHashedPassword(String password) throws NoSuchAlgorithmException {
+		MessageDigest md = MessageDigest.getInstance("SHA-256");
+		md.update(password.getBytes());
+		byte byteData[] = md.digest();
+		StringBuffer sb = new StringBuffer();
+		for(int i = 0; i < byteData.length; i++){
+			sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+		}
+		return sb.toString();
 	}
 
 }

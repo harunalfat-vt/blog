@@ -20,6 +20,7 @@
 		<param-value>
 		classpath:/context/application-context.xml
 		classpath:/context/service-context.xml
+		classpath:/context/controller-context.xml
 		</param-value>
 	</context-param>
 	<servlet-mapping>

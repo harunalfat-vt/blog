@@ -17,7 +17,7 @@
 							<div class="form-group">
 								<div class="input-group">
 									<input type="text" class="form-control" required data-validation-required-message="Cannot be empty"
-										name="title" placeholder="About Title" aria-invalid="false"> <span
+										name="title" placeholder="About Title" aria-invalid="false" value="${about.title }"> <span
 										class="input-group-addon"><span
 										class="glyphicon glyphicon-asterisk"></span></span>
 								</div>
@@ -25,12 +25,12 @@
 							<div class="form-group">
 								<div class="input-group">
 									<input type="text" class="form-control"
-										name="subTitle" placeholder="About Subtitle" required > <span
+										name="subTitle" placeholder="About Subtitle" required value="${about.subTitle }"> <span
 										class="input-group-addon"><span
 										class="glyphicon glyphicon-asterisk"></span></span>
 								</div>
 							</div>
-							<textarea required name="content" id="content" rows="900px" cols="80"></textarea>
+							<textarea required name="content" id="content" rows="900px" cols="80">${about.content }</textarea>
 							<hr>
 							
 							<a class="btn btn-default" id="menu-toggle">Toggle</a>
@@ -51,7 +51,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<!-- Bootstrap Core JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<script src="resources/ckeditor/ckeditor.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/ckeditor/ckeditor.js"></script>
 	
 	<!-- Menu Toggle Script -->
 	<script>

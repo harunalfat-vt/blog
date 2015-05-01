@@ -11,7 +11,7 @@
 	<!-- Bootstrap Core CSS -->
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Custom CSS -->
-	<link href="resources/css/simple-sidebar.css" rel="stylesheet">
+	<link href="<%=request.getContextPath()%>/resources/css/simple-sidebar.css" rel="stylesheet">
 	
 	<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 	
@@ -28,10 +28,10 @@
 		<div id="sidebar-wrapper">
 			<ul class="sidebar-nav">
 				<li class="sidebar-brand"><a href="#"> DASHBOARD </a></li>
-				<li><a href="<%=request.getContextPath()%>/dashboard">New Entry</a></li>
-				<li><a href="#">Post List</a></li>
-				<li><a href="<%=request.getContextPath()%>/updateAbout">About</a></li>
-				<li><a href="<%=request.getContextPath()%>/logout">Logout</a></li>
+				<li><a href="<%=request.getContextPath()%>/dashboard/post">New Entry</a></li>
+				<li><a href="<%=request.getContextPath()%>/dashboard/postList">Post List</a></li>
+				<li><a href="<%=request.getContextPath()%>/dashboard/updateAbout">About</a></li>
+				<li><a href="<%=request.getContextPath()%>/dashboard/logout">Logout</a></li>
 			</ul>
 		</div>
 		<!-- /#sidebar-wrapper -->

@@ -12,10 +12,9 @@ import blog.data.enumeration.EnumSessionVariables;
 
 public class SessionUtil {
 
-	public static Boolean isLogged(HttpSession session, HttpServletResponse response) throws IOException{
+	public static Boolean isLogged(HttpSession session, HttpServletResponse response) throws IOException, HttpClientErrorException{
 		if(session.getAttribute(EnumSessionVariables.user.toString()) == null){
 			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-			response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "unauthorized");
 			throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED, "not logged");
 		}
 		return true;

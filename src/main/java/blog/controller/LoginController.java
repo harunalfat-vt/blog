@@ -31,7 +31,7 @@ public class LoginController {
 	public ModelAndView loginPost(HttpSession session, @ModelAttribute("credential") User user)  {
 		if (credentialService.validateLogin(user.getUsername(),user.getPassword())) {
 			session.setAttribute(EnumSessionVariables.user.toString(), user.getUsername());
-			return new ModelAndView("dashboard/dashboard", new CommonUi());
+			return new ModelAndView("redirect:dashboard/postList");
 		} else{
 			return new ModelAndView("login", new CommonUi());
 		}

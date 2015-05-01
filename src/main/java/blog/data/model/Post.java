@@ -12,6 +12,7 @@ public class Post {
 	private Date dtupdated;
 	private String user;
 	private String dateStr;
+	private String status;
 	
 	public String getId() {
 		return id;
@@ -60,6 +61,12 @@ public class Post {
 	}
 	public void setDtupdated(Date dtupdated) {
 		this.dtupdated = dtupdated;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }
