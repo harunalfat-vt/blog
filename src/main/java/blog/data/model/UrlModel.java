@@ -4,18 +4,16 @@ import javax.servlet.http.HttpServletRequest;
 
 public class UrlModel {
 
-	private String scheme;
-	private String host;
-	private int port;
-	private String path;
-	private String full;
+	private static String scheme;
+	private static String host;
+	private static int port;
+	private static String path;
 	
 	public UrlModel(HttpServletRequest request){
-		this.scheme = request.getScheme();
-		this.host = request.getServerName();
-		this.port = request.getServerPort();
-		this.path = request.getContextPath();
-		this.full = scheme+"://"+host+":"+Integer.toString(port)+path;
+		UrlModel.scheme = request.getScheme();
+		UrlModel.host = request.getServerName();
+		UrlModel.port = request.getServerPort();
+		UrlModel.path = request.getContextPath();
 	}
 	
 	public String getScheme() {
@@ -31,7 +29,10 @@ public class UrlModel {
 		return path;
 	}
 	public String getFull() {
-		return full;
+		return scheme+"://"+host+":"+Integer.toString(port)+path;
+	}
+	public String getSiteOnly(){
+		return scheme+"://"+host+":"+Integer.toString(port);
 	}
 	
 }

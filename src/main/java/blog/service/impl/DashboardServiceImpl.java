@@ -26,13 +26,15 @@ public class DashboardServiceImpl implements DashboardService{
 		Query query = new Query(Criteria.where("id").is(id.toLowerCase()));	
 		Post post = mongoOperations.findOne(query, Post.class, EnumCollectionType.post.toString());
 		SimpleDateFormat formatter = new SimpleDateFormat("MMMM dd, yyyy");
-		if (post.getDtupdated() == null){
-			post.setDateStr(formatter.format(post.getDtcreated()));
-			post.setStatus("new");
-		} else{
-			post.setDateStr(formatter.format(post.getDtupdated()));
-			post.setStatus("edited");
-		}
+		if (post != null){
+			if (post.getDtupdated() == null){
+				post.setDateStr(formatter.format(post.getDtcreated()));
+				post.setStatus("new");
+			} else{
+				post.setDateStr(formatter.format(post.getDtupdated()));
+				post.setStatus("edited");
+			}
+		}		
 		return post;
 	}
 	
@@ -40,13 +42,12 @@ public class DashboardServiceImpl implements DashboardService{
 	public void insertPost(Post post) {
 		post.setId(post.getTitle().toLowerCase());
 		post.setDtcreated(new Date());
-		post.setDtupdated(post.getDtcreated());
 		mongoOperations.insert(post, EnumCollectionType.post.toString());
 	}	
 	
 	@Override
 	public void updatePost(Post post) {
-		post.setId(post.getTitle());
+		post.setId(post.getTitle().toLowerCase());
 		post.setDtupdated(new Date());
 		Query query = new Query(Criteria.where("id").is(post.getId()));
 		Update update = new Update();
@@ -84,14 +85,15 @@ public class DashboardServiceImpl implements DashboardService{
 		query.with(pageRequest);
 		query.with(new Sort(Sort.Direction.DESC,"dtcreated"));
 		List<Post> postList = mongoOperations.find(query, Post.class);
-		for (Post post : postList) {
-			SimpleDateFormat formatter = new SimpleDateFormat("MMMM dd, yyyy");
-			if (post.getDtupdated() == null){			
-				post.setDateStr(formatter.format(post.getDtcreated()));
-			}	else{
-				post.setDateStr(formatter.format(post.getDtupdated()));
+		if (!postList.isEmpty())
+			for (Post post : postList) {
+				SimpleDateFormat formatter = new SimpleDateFormat("MMMM dd, yyyy");
+				if (post.getDtupdated() == null){			
+					post.setDateStr(formatter.format(post.getDtcreated()));
+				}	else{
+					post.setDateStr(formatter.format(post.getDtupdated()));
+				}
 			}
-		}
 		return postList;
 	}
 

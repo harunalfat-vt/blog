@@ -29,7 +29,7 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             	<c:forEach items="${postList}" var="post" varStatus="loop">
             		<div class="post-preview">            			
-            			<a href="<%=request.getContextPath()%>/post/${post.title}">
+            			<a href="<%=request.getContextPath()%>/post?postId=${post.title}">
             				<h2 class="post-title">
             					${post.title }
             				</h2>
@@ -37,7 +37,7 @@
             					${post.subTitle }
             				</h3>
             			</a>
-            			<div class="disqus-comment-count post-meta" data-disqus-url="${url.full}/post/${post.title}"></div>
+            			<div class="disqus-comment-count post-meta" data-disqus-url="${url.full}/post?postId=${post.title}"></div>
             			<p class="post-meta">Posted by ${post.user } on ${post.dateStr} </p>
             			
             		</div>

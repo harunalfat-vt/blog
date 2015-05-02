@@ -49,9 +49,8 @@ public class CommonUi extends ModelMap {
 	}
 	
 	public CommonUi(Map<String,?> map){
+		this();
 		addAllAttributes(map);
-		saveCurrentDate();
-		saveSocialMediaUrl();
 	}
 
 	public String getYear() {

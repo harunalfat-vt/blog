@@ -1,18 +1,20 @@
 package blog.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import blog.data.model.Post;
+import blog.data.model.UrlModel;
 import blog.service.DashboardService;
 import blog.ui.model.CommonUi;
 
@@ -23,7 +25,7 @@ public class HomeController {
 	private DashboardService dashboardService;
 	
 	@RequestMapping(value="/", method = RequestMethod.GET)
-	public ModelAndView index(@RequestParam(value="page",required=false) Integer page, HttpServletRequest request){
+	public ModelAndView index(HttpServletRequest request){
 		CommonUi ui = new CommonUi();
 		List<Post> postList = dashboardService.getPostList(1, 10);
 		ui.addAttribute("postList",postList);
@@ -40,10 +42,11 @@ public class HomeController {
 		return new ModelAndView("about",ui);
 	}
 	
-	@RequestMapping(value="/post/{title}", method = RequestMethod.GET)
-	public ModelAndView post(@PathVariable String title, HttpServletRequest request){
+	@RequestMapping(value="/post", method = RequestMethod.GET)
+	public ModelAndView post(@RequestParam("postId") String id, HttpServletRequest request, HttpServletResponse response) throws IOException{
 		
-		Post post = dashboardService.getPost(title);
+		Post post = dashboardService.getPost(id);
+		if (post == null) response.sendError(404, new UrlModel(request).getSiteOnly());
 		CommonUi ui = new CommonUi();
 		ui.addAttribute("post", post);
 		ui.setCurrentUrl(request);

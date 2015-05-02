@@ -59,7 +59,7 @@
                 	
                 	<!-- Facebook Like & Share -->
 					<div class="fb-like"
-						data-href="${url.full}<%=request.getAttribute("javax.servlet.forward.request_uri")%>"
+						data-href="${url.full}<%=request.getAttribute("javax.servlet.forward.request_uri")%>?postId=${post.id}"
 						data-layout="standard" data-action="like" data-show-faces="false"
 						data-share="true"></div>
 					<!-- Disqus -->
