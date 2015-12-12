@@ -118,7 +118,13 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
-		</dependency>		
+		</dependency>
+		<!-- SLF4J implementation -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-nop</artifactId>
+			<version>1.7.12</version>
+		</dependency>
 	</dependencies>
 	<profiles>
 		<profile>
